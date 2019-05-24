@@ -110,8 +110,8 @@ highlight LineNr      ctermbg=NONE  ctermfg=240
 highlight CursorLine  ctermbg=008   ctermfg=NONE
 highlight Pmenu       ctermbg=235   ctermfg=252     cterm=NONE
 highlight PmenuSel    ctermbg=232   ctermfg=031
-highlight ColorColumn ctermbg=147   ctermfg=None
-highlight OverLength  ctermbg=147   ctermfg=255
+highlight ColorColumn ctermbg=060   ctermfg=None
+highlight OverLength  ctermbg=060   ctermfg=255
 " }}}
 
 
