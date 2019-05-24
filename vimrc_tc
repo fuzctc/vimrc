@@ -1,0 +1,532 @@
+call pathogen#infect()
+" Configuration file for vim
+filetype off
+set modelines=0		" CVE-2007-2438
+
+" Normally we use vim-extensions. If you want true vi-compatibility
+" remove change the following statements
+set nocompatible	" Use Vim defaults instead of 100% vi compatibility
+set formatoptions=qrn1
+" Vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+call plug#begin('~/.vim/plugged')
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+"Plugin 'VundleVim/Vundle.vim'
+Plug 'Lokaltog/vim-powerline'
+"Plugin 'Valloric/YouCompleteMe'
+Plug 'tmhedberg/SimpylFold'
+Plug 'vim-scripts/indentpython.vim'
+"Plugin 'scrooloose/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'jnurmine/Zenburn'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/Pydiction'
+"Plugin 'tell-k/vim-autopep8'
+Plug 'Yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdcommenter'
+Plug 'w0rp/ale'
+Plug 'dracula/vim'
+Plug 'chriskempson/base16-vim'
+Plug 'dgryski/vim-godef'
+Plug 'stamblerre/gocode', {'rtp': 'vim/'}
+"Plug 'mdempsky/gocode', {'rtp': 'vim/'}
+Plug 'sonph/onehalf'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+call plug#end()
+filetype plugin indent on    " required
+let g:go_disable_autoinstall = 0
+"others setting start
+"
+"go setting
+"execute pathogen#infect()
+"syntax on
+syntax enable
+filetype plugin indent on
+imap kk <C-x><C-o>
+nmap ff :TagbarToggle<CR>
+let g:neocomplete#enable_at_startup = 1
+let g:godef_split=0 """左右打开新窗口的时候
+let g:godef_same_file_in_same_window=1 """函数在同一个文件中时不需要打开新窗口
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+imap <F6> <C-x><C-o>
+let g:go_fmt_command = "goimports"
+let g:go_def_mode = "godef"
+"ctags optimization
+set autochdir
+set tags=tags;
+"
+"set number
+set relativenumber
+set nu!
+"set rnu
+set scrolloff=7
+set fileencoding=utf-8
+set fencs=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set history=500
+"set clipboard+=unnamed
+"
+"call togglebg#map("<F6>")
+set clipboard+=unnamed
+set backspace=2		" more powerful backspacing
+set splitbelow
+set splitright
+set t_Co=256
+""2010-10-12 from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+set modelines=0
+let mapleader = ","
+"nnoremap <leader><space> :noh<cr>
+"nnoremap <tab> %
+"vnoremap <tab> %
+"map <tab> %
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+"nnoremap <right> <nopinoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+inoremap <right> <nop>
+"nnoremap j gj
+"nnoremap k gk
+"nnoremap ; :
+"nnoremap <leader>q :xall<cr>
+"nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+inoremap jj <ESC>
+"nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+"nnoremap <leader>a :Ag -i -w <cword> <cr>
+"
+"set formatoptions=qrn1
+set colorcolumn=80
+set wrap
+"
+set cursorline
+nnoremap <leader>c :set cursorline! cursorcolumn!<cr>
+"
+set hidden
+set backspace=indent,eol,start
+"
+"nmap er   :r ~/.vimxfer<cr>
+"nmap ew   :'a,.w! ~/.vimxfer<cr>
+"vmap er   c<esc>:r ~/.vimxfer<cr>
+"vmap ew   :w! ~/.vimxfer<cr>
+"set pastetoggle=cv
+
+"function! SearchDash()
+"	let s:browser = "/usr/bin/open"
+"	let s:wordUnderCursor = expand("<cword>")
+"	let s:url = "dash://".expand('%:e').":".s:wordUnderCursor
+"	let s:cmd ="silent ! " . s:browser . " " . s:url
+"	execute s:cmd
+"	redraw!
+"endfunction
+"map <leader>d :call SearchDash()<cr>
+"
+"function! SearchDashAll()
+"	let s:browser = "/usr/bin/open"
+"	let s:wordUnderCursor = expand("<cword>")
+"	let s:url = "dash://".s:wordUnderCursor
+"	let s:cmd ="silent ! " . s:browser . " " . s:url
+"	execute s:cmd
+"	redraw!
+"endfunction
+"map <leader>dd :call SearchDashAll()<cr>
+"
+"function! SearchDashAndroid()
+"	let s:browser = "/usr/bin/open"
+"	let s:wordUnderCursor = expand("<cword>")
+"	let s:url = "dash://android:".s:wordUnderCursor
+"	let s:cmd ="silent ! " . s:browser . " " . s:url
+"	execute s:cmd
+"	redraw!
+"endfunction
+"map <leader>da :call SearchDashAndroid()<cr>
+
+"let g:ctrlp_working_path_mode = 'cr'
+let g:ctrlp_mruf_max = 500
+let g:ctrlp_max_history = 500
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     
+let g:ctrlp_custom_ignore = {'dir':  '\v[\/]\.(git|hg|svn)$', 'file': '\v\.(exe|so|dll)$'}
+noremap <leader><leader> :CtrlPMixed<cr>
+noremap <leader><leader><leader> :CtrlPMRU<cr>
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" The Silver Searcher
+"
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+  set runtimepath^=~/.vim/bundle/ag
+  "let g:ag_working_path_mode="r"
+  "
+   let g:ag_prg='ag -S --nocolor --nogroup --column --ignore sitedata --ignore image --ignore "tags"'
+endif
+
+
+let g:tagbar_width = 20
+let g:tagbar_autoclose = 0
+let g:tagbar_compact = 1
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+nmap  <leader>tt :TagbarToggle<cr>
+
+"set nofoldenable                " disable code folding
+"let g:DisableAutoPHPFolding = 1 " disable PIV's folding
+
+"neovim
+set clipboard+=unnamedplus  
+"
+set pastetoggle=cv
+" Use deoplete.
+"let g:deoplete#enable_at_startup = 1
+
+"set completeopt=menu,longest
+"let g:SuperTabDefaultCompletionType = 'context'
+
+let g:python3_host_prog = '/usr/local/bin/python3'
+
+"other setting end
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set ruler
+set laststatus=1
+set viminfo+=!
+set showmatch
+set matchtime=5
+set ignorecase
+set hlsearch
+set incsearch
+set autoindent
+set cindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set autochdir
+set autoread
+" Enable folding
+"set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
+"u BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"------------Start Python PEP 8 stuff----------------
+"" Number of spaces that a pre-existing tab is equal to.
+"highlight BadWhitespace ctermbg=red guibg=darkred
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"let g:ycm_autoclose_preview_window_after_completion=1
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"  execfile(activate_this, dict(__file__=activate_this))
+"EOF
+
+"PEP8
+au BufNewFile,BufRead *.py,*pyw,*.c,*.h,*.sh
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+%retab! 
+
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+set showmatch         " 高亮显示对应的括号
+set cindent           " C风格的对齐方式
+set confirm           " 在处理未保存或只读文件的时候，弹出确认
+let python_highlight_all=1
+syntax on             " 自动语法高亮
+set hlsearch
+set incsearch         " 搜索逐字符高亮
+set gdefault          " 行内替换
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936,utf-16,big5,euc-jp,latin1      " 编码设置
+"colorscheme torte     " 设置颜色主题
+"set guifont=Menlo:h16:cANSI      " 设置字体
+" set langmenu=zn_CN.UTF-8
+" set helplang=cn       " 语言设置
+"if has('gui_running')
+"set background=dark
+"colorscheme solarized
+"else
+"colorscheme Zenburn
+"colorscheme desert
+"molokai
+let g:rehash256 = 1
+let g:molokai_original = 1
+"colorscheme molokai
+colorscheme Dracula
+set guifont=Monaco\16
+"highlight Pmenu       ctermbg=235   ctermfg=252     cterm=NONE
+"highlight PmenuSel    ctermbg=232   ctermfg=031
+"endif
+
+map <F4> <leader>ci <CR>
+"F2开启和关闭树"
+map <F2> :NERDTreeToggle<CR>
+let NERDTreeChDirMode=1
+""显示书签"
+let NERDTreeShowBookmarks=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+""窗口大小"
+let NERDTreeWinSize=25
+
+"缩进指示线"
+let g:indentLine_char='¦'
+let g:indentLine_enabled = 0 
+let g:indentLine_color_term = 139
+au BufRead,BufEnter,BufNewFile * IndentLinesReset
+"let g:indentLine_setColors = 0
+"映射到ctrl+i键 
+"map <C-i> :IndentLinesToggle<CR>
+"let g:indentLine_conceallevel = 2
+"map <leader>il :IndentLinesToggle<CR>
+"let g:indentLine_color_tty_light = 7
+"set list lcs=tab:\¦\
+let g:indent_guides_auto_colors = 0
+"let g:indent_guides_guide_size = 1 
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd guibg=red ctermbg=3
+hi IndentGuidesEven guibg=green ctermbg=4
+hi IndentGuidesOdd  ctermbg=white
+hi IndentGuidesEven ctermbg=lightgrey
+"(set-face-background 'highlight-indentation-face "#e3e3d3")
+"(set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
+
+let g:pydiction_location = '/Users/fuzhichang/.vim/bundle/Pydiction/complete-dict'
+
+"autopep8设置"
+"let g:autopep8_disable_show_diff=1
+"
+"flake8
+"autocmd BufWritePost *.py call Flake8()
+"using flake8 as a python syntax checker 
+let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_python_flake8_args='--ignore=E501,E225,E402'
+
+
+set matchtime=5        " 对应括号高亮的时间（单位是十分之一秒）
+set autowrite          " 在切换buffer时自动保存当前文件
+set wildmenu            " 增强模式中的命令行自动完成操作
+set whichwrap=b,s,<,>,[,]
+" 开启Normal或Visual模式下Backspace键，空格键，左方向键，右方向键，Insert或replace模式下左方向键，右方向键跳行的功能。
+set whichwrap=b,s,<,>,[,]
+" 开启Normal或Visual模式下Backspace键，空格键，左方向键，右方向键，Insert或replace模式下左方向键，右方向键跳行的功能。
+" 设置当文件被改动时自动载入
+" " quickfix模式
+autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
+" "代码补全
+"set completeopt=preview,menu
+
+
+"按F5运行python"
+map <F5> :Autopep8<CR> :w<CR> :call RunPython()<CR>
+function RunPython()
+  let mp = &makeprg
+  let ef = &errorformat
+  let exeFile = expand("%:t")
+  setlocal makeprg=python\ -u
+  set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+  silent make %
+  copen
+  let &makeprg = mp
+  let &errorformat = ef
+endfunction
+
+"auto add shell header 
+autocmd BufNewFile *.sh 0r /Users/fuzhichang/.vim/vim_template/vim_shell_header  
+
+"auto add pyhton header --start  
+autocmd BufNewFile *.py 0r /Users/fuzhichang/.vim/vim_template/vim_python_header  
+autocmd BufNewFile *.py ks|call CreatedTime()|'s			
+autocmd BufNewFile *.py ks|call FileName()|'s 
+fun FileName()  
+    if line("$") > 10  
+        let l = 10  "这里是字母L 不是数字1   
+    else  
+        let l = line("$")  
+    endif   
+    exe "1," . l . "g/File Name:.*/s/File Name:.*/File Name: " .expand("%")    
+       "最前面是数字1，这里的File Name: 要和模板中一致  
+endfun
+
+fun CreatedTime()  
+    if line("$") > 10  
+        let l = 10  
+    else  
+        let l = line("$")  
+    endif   
+    exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time: " .strftime("%Y-%m-%d %T")   
+        "这里Create Time: 要和模板中一致  
+endfun   
+"auto add python header --end 			
+			
+			
+"Plugin YouCompleteMe 配置 start:
+"默认配置文件路径"
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"打开vim时不再询问是否加载ycm_extra_conf.py配置"
+"let g:ycm_confirm_extra_conf=0
+"set completeopt=longest,menu
+"python解释器路径"
+"let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
+"是否开启语义补全"
+"let g:ycm_seed_identifiers_with_syntax=1
+"是否在注释中也开启补全"
+"let g:ycm_complete_in_comments=1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"开始补全的字符数"
+"let g:ycm_min_num_of_chars_for_completion=2
+"补全后自动关机预览窗口"
+"let g:ycm_autoclose_preview_window_after_completion=1
+" 禁止缓存匹配项,每次都重新生成匹配项"
+"let g:ycm_cache_omnifunc=0
+"字符串中也开启补全"
+"let g:ycm_complete_in_strings = 1
+"离开插入模式后自动关闭预览窗口"
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"回车即选中当前项"
+"inoremap <expr> <CR>       pumvisible() ? '<C-y>' : '\<CR>'
+"上下左右键行为"
+"inoremap <expr> <Down>     pumvisible() ? '\<C-n>' : '\<Down>'
+"inoremap <expr> <Up>       pumvisible() ? '\<C-p>' : '\<Up>'
+"inoremap <expr> <PageDown> pumvisible() ? '\<PageDown>\<C-p>\<C-n>' : '\<PageDown>'
+"inoremap <expr> <PageUp>   pumvisible() ? '\<PageUp>\<C-p>\<C-n>' : '\<PageUp>'
+
+" YouCompleteMe {{{
+let g:ycm_python_binary_path = ''
+let g:ycm_server_python_interpreter='/usr/bin/python'
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_cache_omnifunc = 0
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_filetype_blacklist = {
+      \ 'html' : 1,
+      \ 'css' : 1,
+	  \ 'vue' : 1,
+      \}
+set completeopt=longest,menu
+let g:ycm_semantic_triggers = {
+    \   'python': ['re!(import\s+|from\s+(\S+\s+(import\s+(\w+,\s+)*)?)?)'],
+    \   'css': ['re!(^\s{2,}|:\s+)'],
+    \ }
+" }}}
+
+
+
+"重新打开回到上次所编辑文件的位置即上次退出文件时的位置 2018-01-09
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+"一旦一行的字符超出80个的话就把那些字符的背景设为红色
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+autocmd! FileType python match OverLength /\%81v.\+/
+"
+"let g:ale_sign_column_always = 1
+let g:jedi#completions_enabled = 1
+let g:jedi#auto_initialization = 1
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+
+"
+"if  len(readfile(expand('%:p'))) < 200
+"	autocmd VimEnter *.py  :0,$!yapf
+"endif
+
+"### ale
+let g:ale_linters = { 'python': ['flake8'] }
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" Write this in your vimrc file
+let g:ale_lint_on_text_changed = 'never'
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+let g:ale_emit_conflict_warnings = 0
+
+
+let g:pymode_rope = 0
+set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
+autocmd FileType python nnoremap -- :0,$!yapf<Cr>
+"autocmd VimEnter *.py  :0,$!yapf
+"set conceallevel=1
+"let g:indentLine_conceallevel=1
+execute pathogen#infect()
