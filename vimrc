@@ -35,6 +35,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <F3> :tabp<CR>
 nnoremap <F4> :tabn<CR>
 nnoremap <F5> :call RunScripts()<CR>
+inoremap jj <ESC>
 function! RunScripts()
     exec 'w'
     if &filetype == 'python'
@@ -74,8 +75,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'guns/xterm-color-table.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'mattn/emmet-vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+"Plug 'mattn/emmet-vim'
+"Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -85,6 +86,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'Yggdroot/indentLine'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 " }}}
 
@@ -101,13 +103,15 @@ let g:solarized_underline  = 0
 let g:solarized_italic     = 0
 let g:solarized_contrast   = "normal"
 let g:solarized_visibility = "normal"
-colorscheme solarized
+"let g:molokai_original = 1
+"colorscheme molokai
+colorscheme dracula
 highlight LineNr      ctermbg=NONE  ctermfg=240
-highlight CursorLine  ctermbg=000   ctermfg=NONE
+highlight CursorLine  ctermbg=008   ctermfg=NONE
 highlight Pmenu       ctermbg=235   ctermfg=252     cterm=NONE
 highlight PmenuSel    ctermbg=232   ctermfg=031
-highlight ColorColumn ctermbg=052   ctermfg=None
-highlight OverLength  ctermbg=052   ctermfg=255
+highlight ColorColumn ctermbg=147   ctermfg=None
+highlight OverLength  ctermbg=147   ctermfg=255
 " }}}
 
 
@@ -133,7 +137,7 @@ let g:jedi#popup_select_first = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 0
 let g:jedi#smart_auto_mappings = 0
-let g:jedi#goto_command = "<C-]>"
+let g:jedi#goto_command = "<C-G>"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "<leader>k"
@@ -144,7 +148,8 @@ let g:jedi#rename_command = "<leader>r"
 
 
 " google/yapf {{{
-autocmd FileType python map <C-Y> :YAPF<CR>
+"autocmd FileType python map <C-Y> :YAPF<CR>
+autocmd FileType python nnoremap -- :0,$!YAPF<CR>
 " }}}
 
 
@@ -181,32 +186,32 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 
 
 " mattn/emmet-vim {{{
-let g:user_emmet_mode='iv'
-let g:user_emmet_leader_key = '<C-Y>'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,vue EmmetInstall
+"let g:user_emmet_mode='iv'
+"let g:user_emmet_leader_key = '<C-Y>'
+"let g:user_emmet_install_global = 0
+"autocmd FileType html,css,vue EmmetInstall
 " }}}
 
 
 " prettier/vim-prettier {{{
-let g:prettier#autoformat = 0
-let g:prettier#exec_cmd_path = ""
-let g:prettier#exec_cmd_async = 1
-
-let g:prettier#config#print_width = 80
-let g:prettier#config#tab_width = 2
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#semi = 'false'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-let g:prettier#config#arrow_parens = 'avoid'
-let g:prettier#config#trailing_comma = 'none'
-let g:prettier#config#parser = 'babylon'
-let g:prettier#config#prose_wrap = 'preserve'
-let g:prettier#config#html_whitespace_sensitivity = 'css'
-
-autocmd FileType html,css,javascript,vue map <C-Y> :Prettier<CR>
+"let g:prettier#autoformat = 0
+"let g:prettier#exec_cmd_path = ""
+"let g:prettier#exec_cmd_async = 1
+"
+"let g:prettier#config#print_width = 80
+"let g:prettier#config#tab_width = 2
+"let g:prettier#config#use_tabs = 'false'
+"let g:prettier#config#semi = 'false'
+"let g:prettier#config#single_quote = 'true'
+"let g:prettier#config#bracket_spacing = 'true'
+"let g:prettier#config#jsx_bracket_same_line = 'false'
+"let g:prettier#config#arrow_parens = 'avoid'
+"let g:prettier#config#trailing_comma = 'none'
+"let g:prettier#config#parser = 'babylon'
+"let g:prettier#config#prose_wrap = 'preserve'
+"let g:prettier#config#html_whitespace_sensitivity = 'css'
+"
+"autocmd FileType html,css,javascript,vue map <C-Y> :Prettier<CR>
 " }}}
 
 
