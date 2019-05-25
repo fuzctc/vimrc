@@ -1,0 +1,27 @@
+{
+    "workbench.iconTheme": "vs-minimal",
+    "editor.fontSize": 16,
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "window.zoomLevel": 1,
+    "workbench.sideBar.location": "left",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["z", "z"],
+            "commands": [
+                ":wq"
+            ]
+        }
+    ],
+    "editor.lineNumbers": "relative"
+}
