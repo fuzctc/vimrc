@@ -315,6 +315,36 @@ highlight ALEErrorSign   ctermbg=None ctermfg=160
 highlight ALEWarningSign ctermbg=None ctermfg=202
 " }}}
 
+"auto add shell header {{{
+autocmd BufNewFile *.sh 0r /Users/fuzhichang/.vim/vim_template/vim_shell_header  
+
+"auto add pyhton header --start  
+autocmd BufNewFile *.py 0r /Users/fuzhichang/.vim/vim_template/vim_python_header  
+autocmd BufNewFile *.py ks|call CreatedTime()|'s			
+autocmd BufNewFile *.py ks|call FileName()|'s 
+fun FileName()  
+    if line("$") > 10  
+        let l = 10  "这里是字母L 不是数字1   
+    else  
+        let l = line("$")  
+    endif   
+    exe "1," . l . "g/File Name:.*/s/File Name:.*/File Name: " .expand("%")    
+       "最前面是数字1，这里的File Name: 要和模板中一致  
+endfun
+
+fun CreatedTime()  
+    if line("$") > 10  
+        let l = 10  
+    else  
+        let l = line("$")  
+    endif   
+    exe "1," . l . "g/Created Time:.*/s/Created Time:.*/Created Time: " .strftime("%Y-%m-%d %T")   
+        "这里Create Time: 要和模板中一致  
+endfun   
+"auto add python header --end 			 }}}
+			
+
+
 
 " Yggdroot/indentLine {{{
 let g:indentLine_char = '¦'
